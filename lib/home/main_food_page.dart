@@ -17,6 +17,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
     return Scaffold(
         body: Column(
       children: [
+        //Showing de Header A aparte de Cabeca
         Container(
           child: Container(
             //Inserindo a a margem da coluna
@@ -64,6 +65,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
             ),
           ),
         ),
+        //Showing de border A partde do corpo
         FoodPageBody(),
       ],
     ));

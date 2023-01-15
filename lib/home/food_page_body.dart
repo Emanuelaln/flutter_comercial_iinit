@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:dots_indicator/dots_indicator.dart';
 
 //Criacao de barra de  menu de comidas
 class FoodPageBody extends StatefulWidget {
@@ -40,15 +41,29 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //color: Colors.redAccent,
-      height: 320,
-      child: PageView.builder(
-          controller: pageController,
-          itemCount: 5,
-          itemBuilder: (context, position) {
-            return _buildePageItem(position);
-          }),
+    return Column(
+      children: [
+        Container(
+          //color: Colors.redAccent,
+          height: 320,
+          child: PageView.builder(
+              controller: pageController,
+              itemCount: 5,
+              itemBuilder: (context, position) {
+                return _buildePageItem(position);
+              }),
+        ),
+        new DotsIndicator(
+          dotsCount: 5,
+          position: _currPageValue,
+          decorator: DotsDecorator(
+            size: const Size.square(9.0),
+            activeSize: const Size(18.0, 9.0),
+            activeShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0)),
+          ),
+        )
+      ],
     );
   }
 
@@ -78,6 +93,10 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           1, currScale, 1); // Margem da escala de movimentação
       matrix = Matrix4.diagonal3Values(1, currScale, 1)
         ..setTranslationRaw(0, currTrans, 0);
+    } else {
+      var currScale = 0.8;
+      matrix = Matrix4.diagonal3Values(1, currScale, 1)
+        ..setTranslationRaw(0, _heigth * (1 - _scaleFactor) / 2, 1);
     }
     return Transform(
       transform: matrix,
@@ -108,9 +127,17 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               height: 120,
               margin: EdgeInsets.only(left: 30, right: 30, bottom: 30),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Colors.white,
-              ),
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        //Insercao de sombra na coluna
+                        color: Color(0xFFe8e8e8e),
+                        blurRadius: 5.0,
+                        offset: Offset(0, 5)),
+                    BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
+                    BoxShadow(color: Colors.white, offset: Offset(5, 0))
+                  ]),
               child: Container(
                 //insercao de child pra  inclusao de botons textos, icones na segunda coluna
                 padding: EdgeInsets.only(top: 15, left: 15, right: 15),
