@@ -1,12 +1,12 @@
 import 'package:app2/utilits/colors.dart';
+import 'package:app2/utilits/dimensions.dart';
 import 'package:app2/widgets/big_text.dart';
 import 'package:app2/widgets/icon_and_text_widget.dart';
 import 'package:app2/widgets/small_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+// import 'package:flutter/src/foundation/key.dart';
+// import 'package:flutter/src/widgets/container.dart';
+// import 'package:flutter/src/widgets/framework.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
 //Criacao de barra de  menu de comidas
@@ -21,8 +21,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
   PageController pageController = PageController(
       viewportFraction: 0.85); //controlador de paginas em movimentos
   var _currPageValue = 0.0; //variavel de controlo de paginas
-  double _scaleFactor = 0.0;
-  double _heigth = 220;
+  double _scaleFactor = 0.8;
+  double _heigth = Dimensions.pageViewContainer;
   @override
   void initState() {
     //funcao pra aumento de zoom e troca de container
@@ -45,7 +45,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
       children: [
         Container(
           //color: Colors.redAccent,
-          height: 320,
+          height: Dimensions.pageView,
           child: PageView.builder(
               controller: pageController,
               itemCount: 5,
@@ -53,10 +53,12 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                 return _buildePageItem(position);
               }),
         ),
+        //Adicionando Dots(Barra de separação)
         new DotsIndicator(
           dotsCount: 5,
           position: _currPageValue,
           decorator: DotsDecorator(
+            activeColor: AppColors.maincolor,
             size: const Size.square(9.0),
             activeSize: const Size(18.0, 9.0),
             activeShape: RoundedRectangleBorder(
@@ -104,7 +106,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
         //posicionamento do container da imagem
         children: [
           Container(
-            height: 220,
+            height: Dimensions.pageViewContainer,
             margin: EdgeInsets.only(
                 left: 10,
                 right:
@@ -124,7 +126,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             //alinhamento pra a segunda imagem do container a baixo a coluna de baixo
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 120,
+              height: Dimensions.pageViewContainer,
               margin: EdgeInsets.only(left: 30, right: 30, bottom: 30),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -181,6 +183,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                       height: 20,
                     ), //Separando pra baixo
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         IconAndTextWidget(
                             //inclusao do primeiro icone e texto
