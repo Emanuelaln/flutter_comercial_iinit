@@ -129,7 +129,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               height: Dimensions.pageViewContainer,
               margin: EdgeInsets.only(left: 30, right: 30, bottom: 30),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(30), //Circular de borda
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
