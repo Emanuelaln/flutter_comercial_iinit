@@ -5,7 +5,7 @@ import 'package:get/instance_manager.dart';
 
 Future<void> init() async {
   //Api do Cliente
-  Get.lazyPut(() => ApiClient(appBaseUrl: "https://www.dbestech.com"));
+  Get.lazyPut(() => ApiClient(appBaseUrl: "https://mvs.bslmeiyu.com"));
   //Reposiçao de Produto
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   //Controllers(Processamento)

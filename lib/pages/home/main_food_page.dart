@@ -1,3 +1,4 @@
+import 'package:app2/utilits/dimensions.dart';
 import 'package:flutter/material.dart';
 import 'package:app2/utilits/colors.dart';
 import 'package:app2/widgets/big_text.dart';
@@ -21,8 +22,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
         Container(
           child: Container(
             //Inserindo a a margem da coluna
-            margin: EdgeInsets.only(top: 45, bottom: 15),
-            padding: EdgeInsets.only(left: 20, right: 20),
+            margin: EdgeInsets.only(
+                top: Dimensions.heigth45, bottom: Dimensions.heigth15),
+            padding: EdgeInsets.only(
+                left: Dimensions.width20, right: Dimensions.width20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -48,14 +51,14 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 Center(
                   // centralizando
                   child: Container(
-                    width: 45,
-                    height: 45,
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.white,
-                    ), // Insercao de icone de pesquisa na coluna
+                    width: Dimensions.heigth45,
+                    height: Dimensions.heigth45,
+                    child: Icon(Icons.search,
+                        color: Colors.white,
+                        size: Dimensions
+                            .iconSize24), // Insercao de icone de pesquisa na coluna
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(Dimensions.radius15),
                       color: AppColors
                           .maincolor, //uso de cor da classe de Appcolors
                     ),
@@ -66,7 +69,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
           ),
         ),
         //Showing de border A partde do corpo
-        FoodPageBody(),
+        Expanded(
+            child: SingleChildScrollView(
+          child: FoodPageBody(),
+        )),
       ],
     ));
   }

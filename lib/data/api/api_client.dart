@@ -1,8 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:get/get_connect.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class ApiClient extends GetConnect implements GetxService {
-  late String token;
+  late String token = "";
+  @override
+  void initState() {
+    token = "Emanuel";
+    //super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Text(token),
+    );
+  }
+
   final String appBaseUrl;
   late Map<String, String> _mainHeaders;
   ApiClient({required this.appBaseUrl}) {

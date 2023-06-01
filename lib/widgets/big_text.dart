@@ -1,3 +1,4 @@
+import 'package:app2/utilits/dimensions.dart';
 import 'package:flutter/cupertino.dart';
 
 //Classe pra criacao de um texto em grande
@@ -23,7 +24,7 @@ class BigText extends StatelessWidget {
       style: TextStyle(
         fontFamily: "Roboto",
         color: color,
-        fontSize: size,
+        fontSize: size == 0 ? Dimensions.font20 : size,
         fontWeight: FontWeight.w400,
       ),
     );
